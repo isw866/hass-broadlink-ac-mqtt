@@ -4,7 +4,7 @@
 # s6-overlay docs: https://github.com/just-containers/s6-overlay
 # ==============================================================================
 
-python3 -c 'import sys, yaml, json; print(yaml.dump(json.loads(open("/data/options.json").read())))' > /usr/share/broadlink_ac_mqtt-1.2.1b/config.yml
+python3 -c 'import sys, yaml, json; print(yaml.dump(json.loads(open("/data/options.json").read())))' > /usr/share/broadlink_ac_mqtt-1.2.2/config.yml
 
 ## Check if debug mode is enabled
 DEBUG_FLAG=""
@@ -14,5 +14,16 @@ if bashio::config.true 'service.debug'; then
     bashio::log.info "Debug mode is enabled — verbose logging is active"
 fi
 
+## Forward log_level / log_level_console from add-on config to monitor.py env vars.
+## Ignored by monitor.py if --debug is also passed (debug wins).
+if bashio::config.has_value 'service.log_level'; then
+    export LOG_LEVEL="$(bashio::config 'service.log_level')"
+    bashio::log.info "LOG_LEVEL=${LOG_LEVEL}"
+fi
+if bashio::config.has_value 'service.log_level_console'; then
+    export LOG_LEVEL_CONSOLE="$(bashio::config 'service.log_level_console')"
+    bashio::log.info "LOG_LEVEL_CONSOLE=${LOG_LEVEL_CONSOLE}"
+fi
+
 ## Run your program
-python3 /usr/share/broadlink_ac_mqtt-1.2.1b/monitor.py ${DEBUG_FLAG}
+python3 /usr/share/broadlink_ac_mqtt-1.2.2/monitor.py ${DEBUG_FLAG}

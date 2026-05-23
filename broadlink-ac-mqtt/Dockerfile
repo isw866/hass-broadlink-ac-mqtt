@@ -9,8 +9,5 @@ RUN apk add --no-cache gcc g++ make \
     pyyaml \
     pycryptodome~=3.23.0 \
     && cd /usr/share \
-    && wget -c https://github.com/liaan/broadlink_ac_mqtt/archive/refs/tags/1.2.1b.tar.gz -O - | tar -xz \
-    && sed -i 's/console\.setLevel(logging\.INFO)/console.setLevel(logging.DEBUG if os.environ.get("BROADLINK_DEBUG") else logging.INFO)/' /usr/share/broadlink_ac_mqtt-1.2.1b/monitor.py \
-    && sed -i '/^import parser$/d' /usr/share/broadlink_ac_mqtt-1.2.1b/broadlink_ac_mqtt/classes/broadlink/ac_db.py \
+    && wget -c https://github.com/Arbuzov/broadlink_ac_mqtt/archive/refs/tags/1.2.2.tar.gz -O - | tar -xz \
     && chmod a+x /etc/services.d/broadlink-ac-mqtt/*
-    

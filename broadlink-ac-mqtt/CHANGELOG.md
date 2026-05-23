@@ -1,5 +1,10 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 0.6.7
+
+- Swap `pycryptodome` for `cryptography>=42` to match upstream `Arbuzov/broadlink_ac_mqtt@1.2.2`, fixing `ModuleNotFoundError: No module named 'cryptography'` at startup
+- Install `libffi-dev` and `openssl-dev` so the `cryptography` wheel/build succeeds on Alpine
+
 ## 0.6.6
 
 - Switched upstream source from the archived `liaan/broadlink_ac_mqtt@1.2.1b` to the maintained `Arbuzov/broadlink_ac_mqtt@1.2.2` fork

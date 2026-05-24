@@ -9,5 +9,5 @@ RUN apk add --no-cache gcc g++ make libffi-dev openssl-dev \
     pyyaml \
     cryptography~=42.0 \
     && cd /usr/share \
-    && wget -c https://github.com/Arbuzov/broadlink_ac_mqtt/archive/refs/tags/1.2.2.tar.gz -O - | tar -xz \
+    && wget -c https://github.com/Arbuzov/broadlink_ac_mqtt/archive/refs/tags/1.2.3.tar.gz -O - | tar -xz \
     && chmod a+x /etc/services.d/broadlink-ac-mqtt/*

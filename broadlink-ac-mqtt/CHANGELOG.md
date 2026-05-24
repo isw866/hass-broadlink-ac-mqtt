@@ -1,5 +1,9 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 0.6.8
+
+- Bump upstream to `Arbuzov/broadlink_ac_mqtt@1.2.3`, which restores the Linux config-path fallback that 1.2.2 had regressed (the broken Windows-style fallback caused `FileNotFoundError: '/usr/share/broadlink_ac_mqtt-1.2.2\\settings\\config.yml'` on add-on startup)
+
 ## 0.6.7
 
 - Swap `pycryptodome` for `cryptography>=42` to match upstream `Arbuzov/broadlink_ac_mqtt@1.2.2`, fixing `ModuleNotFoundError: No module named 'cryptography'` at startup
